@@ -20,7 +20,7 @@ const WrapNavBar = styled.div`
 const WrapSearchHeader = styled.div`
   display: flex;
   align-items: center;
-  flex: 0.55; /* 부모 요소의 나머지 공간을 차지하도록 설정 */
+  flex: 0.55;
 `;
 
 const WrapShortcutIcons = styled.div`
@@ -83,7 +83,7 @@ export default function NavBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!text) alert('검색어를 입력해주세요');
-    else navigate(`/AuctionDetail/${text}`);
+    else navigate(`/AuctionLists/${text}`);
   };
   return (
     <>
