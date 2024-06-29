@@ -18,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <AuctionLists /> },
       { path: 'AuctionLists', element: <AuctionLists /> },
+      { path: 'AuctionLists/:keyword', element: <AuctionLists /> },
       { path: 'AuctionDetail/:auctionId', element: <AuctionDetail /> },
       { path: 'history', element: <VisitHistory /> },
     ],

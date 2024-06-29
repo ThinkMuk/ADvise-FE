@@ -1,5 +1,7 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function AuctionDetail() {
-  return <div>AuctionDetail</div>;
+  const { auctionId } = useParams();
+  return <div>AuctionDetail {auctionId}</div>;
 }
