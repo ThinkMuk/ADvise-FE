@@ -38,7 +38,7 @@ const WrapDisplayDescription = styled.div`
 
 const Divider = styled.div`
   width: 1px; /* 회색 줄의 너비를 2px로 설정 */
-  background-color: gray; /* 회색 줄의 색상 설정 */
+  background-color: #eee; /* 회색 줄의 색상 설정 */
 `;
 
 export default function AuctionDescription() {

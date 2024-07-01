@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FaHistory } from 'react-icons/fa';
 import { BsSearch } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
+import { BsMegaphoneFill } from 'react-icons/bs';
 
 const WrapNavBar = styled.div`
   display: flex;
@@ -38,6 +39,15 @@ const StyledLink = styled(Link)`
   font-weight: bold;
   font-size: 20px;
   color: white;
+
+  strong {
+    color: #0c964a;
+  }
+`;
+
+const StyledBsMegaphone = styled(BsMegaphoneFill)`
+  color: white;
+  margin-right: 8px;
 `;
 
 const SearchForm = styled.form`
@@ -90,7 +100,10 @@ export default function NavBar() {
       <WrapNavBar>
         <WrapSearchHeader>
           <HomeIcon>
-            <StyledLink to='/'>Dutch-Auction</StyledLink>
+            <StyledLink to='/'>
+              <StyledBsMegaphone></StyledBsMegaphone>
+              <strong>AD</strong>vise
+            </StyledLink>
           </HomeIcon>
           <SearchForm onSubmit={handleSubmit}>
             <SearchInput placeholder='Search...' value={text} onChange={(e) => setText(e.target.value)} />
