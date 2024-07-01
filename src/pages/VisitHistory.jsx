@@ -1,5 +1,12 @@
 import React from 'react';
+import HistoryInfo from '../components/HistoryInfo';
 
 export default function VisitHistory() {
-  return <div>VisitHistory</div>;
+  return(
+    <>
+    <HistoryInfo></HistoryInfo>
+    
+    </>
+    ); 
+  
 }
