@@ -30,7 +30,7 @@ export default function HistoryInfo() {
   const historyItems = ['title1','title2','title3','title4','title5','title6','title7','title8','title9']; // 임의 배열!
 
   const handleClick= (title)=>{
-    navigate(`/AuctionLists/${title}`);
+    navigate(`/AuctionDetail/${title}`);
   }; //주소 이동
 
   return (
