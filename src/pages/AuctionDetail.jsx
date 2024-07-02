@@ -21,12 +21,23 @@ export default function AuctionDetail() {
   ]);
   const { auctionId } = useParams();
 
-  // useEffect(() => {
-  //   axios
-  //     .get('')
-  //     .then((res) => setTenders(res.data))
-  //     .catch((e) => console.log(e));
-  // }, []);
+  useEffect(() => {
+    //   axios
+    //     .get('')
+    //     .then((res) => setTenders(res.data))
+    //     .catch((e) => console.log(e));
+    saveHistory(auctionId);
+  }, []);
+
+  const saveHistory = (tmpId) => {
+    var arr = sessionStorage.getItem('history');
+    arr = JSON.parse(arr);
+
+    arr.push(tmpId);
+    arr = new Set(arr);
+    arr = [...arr];
+    sessionStorage.setItem('history', JSON.stringify(arr));
+  };
 
   const deleteTender = (id) => {
     setTenders(tenders.filter((tender) => tender.id !== id));
