@@ -1,4 +1,4 @@
-
+import React from 'react';
 import styled from 'styled-components';
 
 const WrapHistory = styled.div`
@@ -9,7 +9,7 @@ const WrapHistory = styled.div`
 `;
 
 const HistoryBox = styled.div`
-  width: 1000px;
+  width: 1080px;
   height: 30px;
   background-color: #fbfffa;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -24,4 +24,13 @@ const TitleText = styled.div`
   left: 20px;
 `;
 
-export { WrapHistory, HistoryBox, TitleText };
+function HistoryInfo({ title, onClick }) {
+  return (
+    <HistoryBox onClick={() => onClick(title)}>
+      <TitleText>{title}</TitleText>
+    </HistoryBox>
+  );
+}
+
+export { WrapHistory, HistoryBox, TitleText, HistoryInfo };
+
