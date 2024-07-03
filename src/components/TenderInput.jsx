@@ -3,11 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   max-width: 1080px;
-`;
-
-const TenderTitle = styled.h1`
-  /* color: #3cb371; */
-  text-align: center;
+  padding: 10px 30px 30px 30px;
 `;
 
 const Form = styled.form`
@@ -28,6 +24,10 @@ const Input = styled.input`
   font-size: 16px;
   width: 100%;
   box-sizing: border-box;
+
+  &:focus {
+    outline: 2px solid #79cf9f;
+  }
 `;
 
 const LargeInput = styled.textarea`
@@ -38,6 +38,10 @@ const LargeInput = styled.textarea`
   width: 100%;
   height: 100px;
   box-sizing: border-box;
+
+  &:focus {
+    outline: 2px solid #79cf9f;
+  }
 `;
 
 const SmallInput = styled.input`
@@ -47,6 +51,10 @@ const SmallInput = styled.input`
   font-size: 16px;
   width: 100%;
   box-sizing: border-box;
+
+  &:focus {
+    outline: 2px solid #79cf9f;
+  }
 `;
 
 const FlexContainer = styled.div`
@@ -61,6 +69,7 @@ const TenderButton = styled.button`
   border: none;
   border-radius: 4px;
   font-size: 18px;
+  margin-bottom: 20px;
   cursor: pointer;
 
   &:hover {
@@ -107,21 +116,32 @@ export default function TenderInput({ tenders, setTenders }) {
 
   return (
     <Container>
-      <TenderTitle>입찰하기</TenderTitle>
       <Form onSubmit={handleSubmit}>
         <div>
           <Label>제목:</Label>
-          <Input type='text' name='title' value={tenderData.title} onChange={handleChange} />
+          <Input
+            type='text'
+            name='title'
+            value={tenderData.title}
+            onChange={handleChange}
+            placeholder='제목을 입력하세요'
+          />
         </div>
         <FlexContainer>
           <div>
-            <Label>제시가격:</Label>
-            <Input type='number' name='price' value={tenderData.price} onChange={handleChange} />
+            <Label>제시가격 (₩):</Label>
+            <Input
+              type='number'
+              name='price'
+              value={tenderData.price}
+              onChange={handleChange}
+              placeholder='희망하시는 가격을 입력해주세요'
+            />
           </div>
         </FlexContainer>
         <div>
           <Label>URL (Youtube, Instagram):</Label>
-          <Input type='text' name='url' value={tenderData.url} onChange={handleChange} />
+          <Input type='text' name='url' value={tenderData.url} onChange={handleChange} placeholder='https://...' />
         </div>
         <div>
           <Label>세부정보:</Label>

@@ -14,10 +14,16 @@ const WrapAuctionDetail = styled.div`
   /* background-color: red; */
 `;
 
+const AuctionDetailTitle = styled.h1`
+  margin: 10px 0;
+  /* color: #3cb371; */
+  /* text-align: center; */
+`;
+
 export default function AuctionDetail() {
   const [tenders, setTenders] = useState([
-    { title: 'title1', id: 'id1', password: '123', price: '1000', url: 'url1', info: 'info1' },
-    { title: 'title2', id: 'id2', password: '321', price: '2000', url: 'url2', info: 'info2' },
+    { title: 'title1', id: 'id1', password: '123', price: '1000', url: 'http://google.com', info: 'info1' },
+    { title: 'title2', id: 'id2', password: '321', price: '2000', url: 'http://google.com', info: 'info2' },
   ]);
   const { auctionId } = useParams();
 
@@ -46,8 +52,9 @@ export default function AuctionDetail() {
     <>
       <WrapAuctionDetail>
         <AuctionDescription />
+        <AuctionDetailTitle>입찰하기</AuctionDetailTitle>
         <TenderInput tenders={tenders} setTenders={setTenders} />
-        <h1>입찰 정보창</h1> {/* 임시 */}
+        <AuctionDetailTitle>입찰 정보창</AuctionDetailTitle>
         {tenders &&
           tenders.map((tender) => (
             <TenderList
@@ -61,7 +68,7 @@ export default function AuctionDetail() {
               deleteTender={deleteTender}
             />
           ))}
-        <div>Auction Id: {auctionId}</div>
+        {/* PostAd id표시 <div>Auction Id: {auctionId}</div> */}
       </WrapAuctionDetail>
     </>
   );
