@@ -95,6 +95,7 @@ export default function TenderInput({ tenders, setTenders }) {
       [name]: value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { title, id, password, price, url, info } = tenderData;
@@ -103,6 +104,7 @@ export default function TenderInput({ tenders, setTenders }) {
       alert('모든 필드를 입력해주세요.');
       return;
     }
+
     try {
       setTenders([...tenders, tenderData]);
       setTenderData(InitTenderData);
@@ -136,6 +138,7 @@ export default function TenderInput({ tenders, setTenders }) {
               value={tenderData.price}
               onChange={handleChange}
               placeholder='희망하시는 가격을 입력해주세요'
+              min='0'
             />
           </div>
         </FlexContainer>
