@@ -12,8 +12,17 @@ const WrapAuctionDescription = styled.div`
 `;
 
 const WrapDisplayImage = styled.div`
-  background-color: lightgray;
+  /* background-color: lightgray; */
   flex: 3;
+`;
+
+const DisplayImage = styled.div`
+  background-color: lightgray;
+  margin: 10px;
+  /* width: 100%; */
+  height: 95%;
+  box-sizing: border-box;
+  border-radius: 5px;
 `;
 
 const WrapDisplayDescription = styled.div`
@@ -47,7 +56,9 @@ export default function AuctionDescription() {
   const [auctionMinimumPrice, setAuctionMinimumPrice] = useState('50,000');
   return (
     <WrapAuctionDescription>
-      <WrapDisplayImage></WrapDisplayImage>
+      <WrapDisplayImage>
+        <DisplayImage />
+      </WrapDisplayImage>
       <Divider />
       <WrapDisplayDescription>
         <h2>{auctionTitle}</h2>
