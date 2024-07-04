@@ -50,20 +50,17 @@ const Divider = styled.div`
   background-color: #eee; /* 회색 줄의 색상 설정 */
 `;
 
-export default function AuctionDescription() {
-  const [auctionTitle, setAuctionTitle] = useState('Title');
-  const [auctionContent, setAuctionContent] = useState('Content');
-  const [auctionMinimumPrice, setAuctionMinimumPrice] = useState('50,000');
+export default function AuctionDescription({ state }) {
   return (
     <WrapAuctionDescription>
       <WrapDisplayImage>
-        <DisplayImage />
+        <DisplayImage src={state.imageURL} />
       </WrapDisplayImage>
       <Divider />
       <WrapDisplayDescription>
-        <h2>{auctionTitle}</h2>
-        <h3>최저: {auctionMinimumPrice} ₩</h3>
-        <p>{auctionContent}</p>
+        <h2>{state.title}</h2>
+        <h3>최저: {state.minimum_price} ₩</h3>
+        <p>{state.content}</p>
       </WrapDisplayDescription>
     </WrapAuctionDescription>
   );

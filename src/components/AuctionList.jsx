@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const FormContainer = styled.div`
   width: 100%;
@@ -37,7 +37,7 @@ const Title = styled.h3`
 
 const MinimumPrice = styled.p`
   margin: 10px 0 0;
-  color: #3CB371;
+  color: #3cb371;
   font-size: 1rem;
 `;
 
@@ -47,17 +47,23 @@ const Content = styled.p`
   font-size: 0.9rem;
 `;
 
-const AuctionList = ({ id, title, minimum_price, content }) => {
+const AuctionList = ({ id, imageURL, title, minimum_price, content }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/AuctionDetail/${id}`);
+    navigate(`/AuctionDetail/${id}`, {
+      state: {
+        imageURL,
+        title,
+        minimum_price,
+        content,
+      },
+    });
   };
 
-  
   return (
     <FormContainer onClick={handleClick}>
-      <Image />
+      <Image src={imageURL} />
       <ContentWrapper>
         <Title>제목 :{title}</Title>
         <MinimumPrice>최저 : {minimum_price} ₩</MinimumPrice>

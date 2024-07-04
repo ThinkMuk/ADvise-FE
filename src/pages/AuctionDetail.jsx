@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import AuctionDescription from '../components/AuctionDescription';
 import TenderInput from '../components/TenderInput';
@@ -27,6 +27,7 @@ export default function AuctionDetail() {
     { title: 'title2', id: 'id2', password: '321', price: '2000', url: 'http://google.com', info: 'info2' },
   ]);
   const { auctionId } = useParams();
+  const { state } = useLocation();
 
   useEffect(() => {
     //   axios
@@ -52,7 +53,7 @@ export default function AuctionDetail() {
   return (
     <>
       <WrapAuctionDetail>
-        <AuctionDescription />
+        <AuctionDescription state={state} />
         <AuctionDetailTitle>입찰하기</AuctionDetailTitle>
         <TenderInput tenders={tenders} setTenders={setTenders} />
         <AuctionDetailTitle>입찰 정보창</AuctionDetailTitle>
