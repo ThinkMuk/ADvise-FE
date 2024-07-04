@@ -10,6 +10,7 @@ const WrapFooter = styled.div`
   color: #989898;
   font-size: 12px;
   height: 100px;
+  position: relative;
 `;
 
 const StyledBsMegaphone = styled(BsMegaphoneFill)`
