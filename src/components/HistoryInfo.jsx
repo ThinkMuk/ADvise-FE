@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
 
 const WrapHistory = styled.div`
   display: flex;
@@ -10,7 +9,7 @@ const WrapHistory = styled.div`
 `;
 
 const HistoryBox = styled.div`
-  width: 1000px;
+  width: 1080px;
   height: 30px;
   background-color: #fbfffa;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -24,30 +23,14 @@ const TitleText = styled.div`
   font-weight: bold;
   left: 20px;
 `;
-export default function HistoryInfo() {
-  const navigate = useNavigate();
-  const [history, setHistory] = useState(JSON.parse(sessionStorage.getItem('history')));
-  const handleClick = (title) => {
-    navigate(`/AuctionDetail/${title}`);
-  }; //주소 이동
 
+function HistoryInfo({ title, onClick }) {
   return (
-    <>
-      <WrapHistory>
-        {history.map((id, index) => (
-          <HistoryBox key={index} onClick={() => handleClick(id)}>
-            <TitleText>{id}</TitleText>
-          </HistoryBox>
-        ))}
-        <button
-          onClick={() => {
-            sessionStorage.setItem('history', JSON.stringify([]));
-            setHistory([]);
-          }}
-        >
-          Clear History
-        </button>
-      </WrapHistory>
-    </>
+    <HistoryBox onClick={() => onClick(title)}>
+      <TitleText>{title}</TitleText>
+    </HistoryBox>
   );
 }
+
+export { WrapHistory, HistoryBox, TitleText, HistoryInfo };
+
