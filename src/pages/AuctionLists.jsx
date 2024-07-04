@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import AuctionList from "../components/AuctionList";
 import styled from "styled-components";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import axios from "axios";
 
 
 
 const WrapGridContainer = styled.div`
   max-width: 1080px;
-  height: 1000px;
+  height: 1100px;
   margin: 0 auto;
 `;
 
@@ -40,11 +40,7 @@ const AuctionLists = () => {
     }
   }, []);
 
-  const navigate = useNavigate();
-
-  const handleClick = (id) => {
-    navigate(`/AuctionDetail/${id}`);
-  };
+  
   
 
    /*const [auctionList, setAuctionList] = useState([]);
@@ -67,8 +63,12 @@ const AuctionLists = () => {
         <GridContainer>
           {formItems.map((item) => (
             <AuctionList 
-              key={item.id} 
-              onClick={() => handleClick(item.id)}
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            minimum_price={item.minimum_price}
+            content={item.content} 
+              
             ></AuctionList>
           ))}
           <div>{keyword}</div>
