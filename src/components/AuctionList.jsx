@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const FormContainer = styled.div`
   width: 100%;
-  padding: 10px; 
+  padding: 10px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
@@ -46,19 +47,21 @@ const Content = styled.p`
   font-size: 0.9rem;
 `;
 
-const AuctionList = ({ onClick }) => {
-  const [image, setImage] = useState();
-  const [title, setTitle] = useState('제목 : 멋사빌딩 옥외 광고 제안');
-  const [minimum_price, setMinimum_price] = useState('999999');
-  const [content, setContent] = useState('content : 멋쟁이 사자처럼 본사 건물의 옥외 빌딩 광고를 제안합니다.');
+const AuctionList = ({ id, title, minimum_price, content }) => {
+  const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate(`/AuctionDetail/${id}`);
+  };
+
+  
   return (
-    <FormContainer onClick={onClick}>
+    <FormContainer onClick={handleClick}>
       <Image />
       <ContentWrapper>
-        <Title>{title}</Title>
+        <Title>제목 :{title}</Title>
         <MinimumPrice>최저 : {minimum_price} ₩</MinimumPrice>
-        <Content>{content}</Content>
+        <Content>content :{content}</Content>
       </ContentWrapper>
     </FormContainer>
   );
