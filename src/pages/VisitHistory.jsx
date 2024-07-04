@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { WrapHistory, HistoryInfo } from '../components/HistoryInfo';
+import { WrapHistory, HistoryInfo, WrapContainer,ClearButton } from '../components/HistoryInfo';
 
 export default function VisitHistory() {
   const navigate = useNavigate();
@@ -11,18 +11,23 @@ export default function VisitHistory() {
   }; // 주소 이동
 
   return (
+  <WrapContainer>
     <WrapHistory>
       {history.map((id, index) => (
         <HistoryInfo key={index} title={id} onClick={handleClick} />
       ))}
-      <button
+      <ClearButton
         onClick={() => {
           sessionStorage.setItem('history', JSON.stringify([]));
           setHistory([]);
         }}
       >
         Clear History
-      </button>
+      </ClearButton>
     </WrapHistory>
+  </WrapContainer>
   );
 }
+
+
+//추후 id1 이 아닌 타이틀과 최저 가격이 뜨게끔 수정 해야함
