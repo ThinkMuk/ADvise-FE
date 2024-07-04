@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import AuctionList from "../components/AuctionList";
-import styled from "styled-components";
-import { useParams} from "react-router-dom";
-import axios from "axios";
-
-
+import React, { useEffect, useState } from 'react';
+import AuctionList from '../components/AuctionList';
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const WrapGridContainer = styled.div`
   max-width: 1080px;
@@ -23,12 +21,12 @@ const GridContainer = styled.div`
 `;
 
 const formItems = [
-  { id: "id1", title: "", minimum_price: "", content: "" },
-  { id: "id2", title: "", minimum_price: "", content: "" },
-  { id: "id3", title: "", minimum_price: "", content: "" },
-  { id: "id4", title: "", minimum_price: "", content: "" },
-  { id: "id5", title: "", minimum_price: "", content: "" },
-  { id: "id6", title: "", minimum_price: "", content: "" },
+  { id: 'id1', title: '1', minimum_price: '1', content: '1', imageURL: '1' },
+  { id: 'id2', title: '2', minimum_price: '2', content: '2', imageURL: '2' },
+  { id: 'id3', title: '3', minimum_price: '3', content: '3', imageURL: '3' },
+  { id: 'id4', title: '4', minimum_price: '4', content: '4', imageURL: '4' },
+  { id: 'id5', title: '5', minimum_price: '5', content: '5', imageURL: '5' },
+  { id: 'id6', title: '6', minimum_price: '6', content: '6', imageURL: '6' },
 ];
 
 const AuctionLists = () => {
@@ -40,10 +38,7 @@ const AuctionLists = () => {
     }
   }, []);
 
-  
-  
-
-   /*const [auctionList, setAuctionList] = useState([]);
+  /*const [auctionList, setAuctionList] = useState([]);
 
    useEffect(()=> {
     axios
@@ -56,19 +51,18 @@ const AuctionLists = () => {
     })
   },[]);*/
 
-
   return (
     <>
       <WrapGridContainer>
         <GridContainer>
           {formItems.map((item) => (
-            <AuctionList 
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            minimum_price={item.minimum_price}
-            content={item.content} 
-              
+            <AuctionList
+              key={item.id}
+              id={item.id}
+              imageURL={item.imageURL}
+              title={item.title}
+              minimum_price={item.minimum_price}
+              content={item.content}
             ></AuctionList>
           ))}
           <div>{keyword}</div>

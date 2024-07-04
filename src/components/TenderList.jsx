@@ -158,7 +158,7 @@ export default function TenderList({ title, id, password, price, url, info, dele
         </TenderDetailLeft>
         <TenderDetailRight>
           <div>제시가격: {price} ₩</div>
-          <div style={{ display: 'flex', width: '100%' }}>
+          <div>
             <DeleteInput
               type='password'
               placeholder='비밀번호 입력'
@@ -177,7 +177,7 @@ export default function TenderList({ title, id, password, price, url, info, dele
           </div>
         </TenderDetailRight>
       </TenderDetail>
-      <Info expanded={expanded} ref={infoRef}>
+      <Info expanded='expanded' ref={infoRef}>
         {info}
       </Info>
     </WrapTenderList>
