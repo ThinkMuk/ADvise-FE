@@ -85,6 +85,14 @@ const StyledFaHistory = styled(FaHistory)`
   color: white;
   font-size: 20px;
   cursor: pointer;
+
+  &:hover {
+    transition: 0.25s ease-out;
+    color: #0c964a;
+  }
+  &:not(:hover) {
+    transition: 0.25s ease-out;
+  }
 `;
 
 export default function NavBar() {
