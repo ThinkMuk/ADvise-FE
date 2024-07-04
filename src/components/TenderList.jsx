@@ -70,6 +70,7 @@ const TenderDetailRight = styled.div`
 const DeleteInput = styled.input`
   padding: 2px;
   border: 1px solid #ccc;
+  border-right: none;
   font-size: 12px;
   width: 70%;
   box-sizing: border-box;
