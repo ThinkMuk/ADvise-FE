@@ -29,6 +29,7 @@ const HistoryBox = styled.div`
   align-items: center; 
   border: 1px solid #ccc;
   transition: border-color 0.3s ease;
+  cursor: pointer;
 
 
   &:hover {
