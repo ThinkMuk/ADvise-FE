@@ -11,6 +11,7 @@ const WrapAuctionDetail = styled.div`
   flex-direction: column;
   max-width: 1080px;
   margin: 0 auto;
+  margin-bottom: 100px;
   /* background-color: red; */
 `;
 
