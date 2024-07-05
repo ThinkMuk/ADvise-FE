@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const WrapContainer = styled.div`
   display: flex;
@@ -40,14 +40,18 @@ const HistoryBox = styled.div`
 const TitleText = styled.div`
   font-size: 20px;
   font-weight: bold;
-  margin-left: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 800px; /* 고정 너비 설정 */
 `;
 
 const PriceText = styled.div`
   font-size: 20px;
   font-weight: bold;
-  margin-left: 700px;
   color: #0c964a;
+  white-space: nowrap;
+  margin-left: 20px; /* 적당한 여백 설정 */
 `;
 
 const ClearButton = styled.button`
@@ -76,4 +80,11 @@ function HistoryInfo({ title, minimum_price, onClick }) {
   );
 }
 
-export { WrapHistory, HistoryBox, TitleText, HistoryInfo, WrapContainer, ClearButton };
+export {
+  WrapHistory,
+  HistoryBox,
+  TitleText,
+  HistoryInfo,
+  WrapContainer,
+  ClearButton,
+};

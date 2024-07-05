@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { WrapHistory, HistoryInfo, WrapContainer, ClearButton } from '../components/HistoryInfo';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  WrapHistory,
+  HistoryInfo,
+  WrapContainer,
+  ClearButton,
+} from "../components/HistoryInfo";
 
 export default function VisitHistory() {
   const navigate = useNavigate();
-  const [history, setHistory] = useState(JSON.parse(sessionStorage.getItem('history')));
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    const storedHistory = JSON.parse(sessionStorage.getItem("history"));
+    if (storedHistory) {
+      setHistory(storedHistory);
+    }
+  }, []);
 
   const handleClick = (title) => {
     navigate(`/AuctionDetail/${title}`);
@@ -13,12 +25,17 @@ export default function VisitHistory() {
   return (
     <WrapContainer>
       <WrapHistory>
-        {history.map((id, index) => (
-          <HistoryInfo key={index} title={id[1]} minimum_price={id[2]} onClick={() => handleClick(id[0])} />
+        {[...history].reverse().map((id, index) => (
+          <HistoryInfo
+            key={index}
+            title={id[1]}
+            minimum_price={parseInt(id[2], 10).toLocaleString()}
+            onClick={() => handleClick(id[0])}
+          />
         ))}
         <ClearButton
           onClick={() => {
-            sessionStorage.setItem('history', JSON.stringify([]));
+            sessionStorage.setItem("history", JSON.stringify([]));
             setHistory([]);
           }}
         >

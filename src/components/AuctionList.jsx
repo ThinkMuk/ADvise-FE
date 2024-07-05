@@ -2,6 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+const WrapContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 500vh;
+  padding-bottom: 50px;
+  flex-grow: 1;
+`;
+
 const FormContainer = styled.div`
   width: 100%;
   padding: 10px;
@@ -12,21 +20,27 @@ const FormContainer = styled.div`
   box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   cursor: pointer;
-  height: 450px; /* 고정 높이 설정 */
+  height: 450px;
 
   &:hover {
     border: 1px solid #79cf9f;
   }
 `;
 
-const Image = styled.img`
-  background-color: #f8a9a9;
+const ImageContainer = styled.div`
   height: 300px;
-  box-sizing: border-box;
-  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  border-radius: 5px;
+  //background-color: #f8a9a9;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* 이미지가 박스를 벗어나지 않도록 조절 */
 `;
 
 const ContentWrapper = styled.div`
@@ -68,15 +82,19 @@ const AuctionList = ({ id, image, title, minimum_price, content }) => {
   };
 
   return (
-    <FormContainer onClick={handleClick}>
-      <Image src={image} />
-      <ContentWrapper>
-        <Title>제목: {title}</Title>
-        <MinimumPrice>최저: {minimum_price} ₩</MinimumPrice>
-        <Content>내용: {content}</Content>
-      </ContentWrapper>
-    </FormContainer>
+    <>
+      <FormContainer onClick={handleClick}>
+        <ImageContainer>
+          <Image src={image} alt={title} />
+        </ImageContainer>
+        <ContentWrapper>
+          <Title>제목: {title}</Title>
+          <MinimumPrice>최저: {minimum_price} ₩</MinimumPrice>
+          <Content>내용: {content}</Content>
+        </ContentWrapper>
+      </FormContainer>
+    </>
   );
 };
 
-export default AuctionList;
+export { WrapContainer, AuctionList };
