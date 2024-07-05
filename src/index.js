@@ -9,6 +9,7 @@ import { RouterProvider } from 'react-router-dom';
 import AuctionLists from './pages/AuctionLists';
 import AuctionDetail from './pages/AuctionDetail';
 import VisitHistory from './pages/VisitHistory';
+import UploadCommercial from './pages/UploadCommercial';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: 'AuctionLists/:keyword', element: <AuctionLists /> },
       { path: 'AuctionDetail/:auctionId', element: <AuctionDetail /> },
       { path: 'history', element: <VisitHistory /> },
+      { path: 'UploadCommercial', element: <UploadCommercial /> },
     ],
   },
 ]);
