@@ -124,7 +124,12 @@ export default function NavBar() {
       <WrapNavBar>
         <WrapSearchHeader>
           <HomeIcon>
-            <StyledLink to='/'>
+            <StyledLink
+              to='/'
+              onClick={() => {
+                setText('');
+              }}
+            >
               <StyledBsMegaphone></StyledBsMegaphone>
               <strong>AD</strong>vise
             </StyledLink>

@@ -159,7 +159,7 @@ export default function TenderList({ title, identifier, id, price, url, info, de
           </TenderURL>
         </TenderDetailLeft>
         <TenderDetailRight>
-          <div>제시가격: {price} ₩</div>
+          <div>제시가격: {parseInt(price).toLocaleString()} ₩</div>
           <div>
             <DeleteInput
               type='password'
