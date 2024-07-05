@@ -26,17 +26,15 @@ const HistoryBox = styled.div`
   padding: 16px;
   margin: 16px 0;
   display: flex;
-  align-items: center; 
+  align-items: center;
   border: 1px solid #ccc;
   transition: border-color 0.3s ease;
   cursor: pointer;
 
-
   &:hover {
     box-shadow: rgba(180, 218, 197, 0.5) 0px 2px 8px;
     transform: scale(1.01);
-  }  
-
+  }
 `;
 
 const TitleText = styled.div`
@@ -49,9 +47,8 @@ const PriceText = styled.div`
   font-size: 20px;
   font-weight: bold;
   margin-left: 700px;
-  color: #0C964A;
+  color: #0c964a;
 `;
-
 
 const ClearButton = styled.button`
   padding: 3px;
@@ -68,19 +65,15 @@ const ClearButton = styled.button`
   &:hover {
     background-color: #0c964a;
   }
-
 `;
 
-
-
-function HistoryInfo({ title, onClick }) {
+function HistoryInfo({ title, minimum_price, onClick }) {
   return (
     <HistoryBox onClick={() => onClick(title)}>
       <TitleText>{title}</TitleText>
-      <PriceText>최저가격: 1원</PriceText>
+      <PriceText>최저가격: {minimum_price}</PriceText>
     </HistoryBox>
   );
 }
 
 export { WrapHistory, HistoryBox, TitleText, HistoryInfo, WrapContainer, ClearButton };
-

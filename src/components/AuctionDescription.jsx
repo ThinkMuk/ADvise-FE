@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const WrapAuctionDescription = styled.div`
@@ -50,17 +51,17 @@ const Divider = styled.div`
   background-color: #eee; /* 회색 줄의 색상 설정 */
 `;
 
-export default function AuctionDescription({ state }) {
+export default function AuctionDescription({ auctionData }) {
   return (
     <WrapAuctionDescription>
       <WrapDisplayImage>
-        <DisplayImage src={state.imageURL} />
+        <DisplayImage src={auctionData.imageURL} />
       </WrapDisplayImage>
       <Divider />
       <WrapDisplayDescription>
-        <h2>{state.title}</h2>
-        <h3>최저: {state.minimum_price} ₩</h3>
-        <p>{state.content}</p>
+        <h2>{auctionData.title}</h2>
+        <h3>최저: {auctionData.minimum_price} ₩</h3>
+        <p>{auctionData.content}</p>
       </WrapDisplayDescription>
     </WrapAuctionDescription>
   );

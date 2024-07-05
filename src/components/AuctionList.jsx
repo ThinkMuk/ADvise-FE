@@ -51,14 +51,7 @@ const AuctionList = ({ id, imageURL, title, minimum_price, content }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/AuctionDetail/${id}`, {
-      state: {
-        imageURL,
-        title,
-        minimum_price,
-        content,
-      },
-    });
+    navigate(`/AuctionDetail/${id}`);
   };
 
   return (
