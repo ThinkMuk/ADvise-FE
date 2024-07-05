@@ -114,14 +114,13 @@ export default function TenderInput({ tenders, setTenders, auctionId }) {
     try {
       setTenders([...tenders, tenderDataWithNumber]);
       setTenderData(tenderDataWithNumber);
-      console.log(JSON.stringify(tenderDataWithNumber));
-      console.log(tenderDataWithNumber);
       const response = await axios.post(
         `https://advise.kro.kr/dutch/ads/${auctionId}/proposals/`,
         tenderDataWithNumber
       );
       console.log('성공:', response.data);
       alert(`${tenderDataWithNumber.identifier}님의 입찰 신청이 완료되었습니다`);
+      window.location.reload(); // 페이지 새로고침
     } catch (err) {
       console.error(err);
     }
