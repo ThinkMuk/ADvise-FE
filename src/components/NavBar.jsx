@@ -4,6 +4,7 @@ import { FaHistory } from 'react-icons/fa';
 import { BsSearch } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsMegaphoneFill } from 'react-icons/bs';
+import { FaFileUpload } from 'react-icons/fa';
 
 const WrapNavBar = styled.div`
   display: flex;
@@ -95,6 +96,21 @@ const StyledFaHistory = styled(FaHistory)`
   }
 `;
 
+const StyledFaFileUpload = styled(FaFileUpload)`
+  color: white;
+  font-size: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.25s ease-out;
+    color: #0c964a;
+  }
+  &:not(:hover) {
+    transition: 0.25s ease-out;
+  }
+`;
+
 export default function NavBar() {
   const navigate = useNavigate();
   const [text, setText] = useState('');
@@ -121,6 +137,9 @@ export default function NavBar() {
           </SearchForm>
         </WrapSearchHeader>
         <WrapShortcutIcons>
+          <Link to='/UploadCommercial'>
+            <StyledFaFileUpload />
+          </Link>
           <Link to='/history'>
             <StyledFaHistory />
           </Link>
