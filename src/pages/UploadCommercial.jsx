@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const WrapUploadCommercial = styled.div`
   display: flex;
@@ -91,6 +92,7 @@ export default function UploadCommercial() {
     image: null,
   });
   const [previewUrl, setPreviewUrl] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -126,9 +128,19 @@ export default function UploadCommercial() {
     }
 
     const SendFormData = new FormData();
-    SendFormData.append('title', title);
-    SendFormData.append('content', content);
-    SendFormData.append('minimum_price', minimum_price);
+    // SendFormData.append('title', title);
+    // SendFormData.append('content', content);
+    // SendFormData.append('minimum_price', minimum_price);
+    console.log(title);
+    console.log(content);
+    SendFormData.append(
+      'data',
+      JSON.stringify({
+        title,
+        content,
+        minimum_price: Number(minimum_price),
+      })
+    );
     SendFormData.append('image', image);
 
     console.log(SendFormData);
@@ -139,6 +151,8 @@ export default function UploadCommercial() {
         },
       });
       console.log('성공:', response.data);
+      alert('업로드가 완료되었습니다.');
+      navigate('/');
     } catch (err) {
       console.error('에러:', err);
     }

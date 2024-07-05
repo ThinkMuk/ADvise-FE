@@ -60,7 +60,7 @@ export default function AuctionDescription({ auctionData }) {
       <Divider />
       <WrapDisplayDescription>
         <h2>{auctionData.title}</h2>
-        <h3>최저: {auctionData.minimum_price} ₩</h3>
+        <h3>최저: {parseInt(auctionData.minimum_price)} ₩</h3>
         <p>{auctionData.content}</p>
       </WrapDisplayDescription>
     </WrapAuctionDescription>
