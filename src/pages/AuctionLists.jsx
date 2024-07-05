@@ -5,21 +5,23 @@ import axios from "axios";
 import { WrapContainer, AuctionList } from "../components/AuctionList"; // import 수정
 
 const WrapGridContainer = styled.div`
+  display: flex;
   max-width: 1080px;
-  height: 1200px;
   margin: 0 auto;
+  flex-grow: 1; /* 컨테이너가 남은 공간을 채우도록 설정 */
+  flex-direction: column; /* 수직으로 컨텐츠를 배치 */
+  margin-bottom: 100px;
 `;
 
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  width: 1080px;
-  height: 950px;
+  width: 100%;
+  height: auto; /* 높이를 자동으로 조절 */
   position: relative;
   top: 50px;
 `;
-
 const EmptyMessage = styled.div`
   width: 100%;
   text-align: center;

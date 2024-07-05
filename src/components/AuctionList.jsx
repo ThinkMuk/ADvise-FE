@@ -5,9 +5,9 @@ import styled from "styled-components";
 const WrapContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 500vh;
-  padding-bottom: 50px;
-  flex-grow: 1;
+  min-height: 100vh; /* 최소 화면 높이 */
+  height: auto; /* 자동으로 컨테이너 높이 조정 */
+  padding-bottom: 50px; /* 푸터 공간 확보 */
 `;
 
 const FormContainer = styled.div`
