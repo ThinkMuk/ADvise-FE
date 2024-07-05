@@ -88,9 +88,9 @@ const AuctionList = ({ id, image, title, minimum_price, content }) => {
           <Image src={image} alt={title} />
         </ImageContainer>
         <ContentWrapper>
-          <Title>제목: {title}</Title>
+          <Title>{title}</Title>
           <MinimumPrice>최저: {minimum_price} ₩</MinimumPrice>
-          <Content>내용: {content}</Content>
+          <Content>{content}</Content>
         </ContentWrapper>
       </FormContainer>
     </>
