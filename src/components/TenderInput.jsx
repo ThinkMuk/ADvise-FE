@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -77,14 +78,14 @@ const TenderButton = styled.button`
   }
 `;
 
-export default function TenderInput({ tenders, setTenders }) {
+export default function TenderInput({ tenders, setTenders, auctionId }) {
   const InitTenderData = {
+    identifier: '',
+    pwd: '',
     title: '',
-    id: '',
-    password: '',
-    price: '',
     url: '',
     info: '',
+    price: '',
   };
   const [tenderData, setTenderData] = useState(InitTenderData);
 
@@ -98,19 +99,29 @@ export default function TenderInput({ tenders, setTenders }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { title, id, password, price, url, info } = tenderData;
+    const { identifier, pwd, title, url, info, price } = tenderData;
 
-    if (!title || !id || !password || !price || !url || !info) {
+    if (!identifier || !pwd || !title || !url || !info || !price) {
       alert('모든 필드를 입력해주세요.');
       return;
     }
 
+    const tenderDataWithNumber = {
+      ...tenderData,
+      price: Number(price), // price를 숫자형으로 변환
+    };
+
     try {
-      setTenders([...tenders, tenderData]);
-      setTenderData(InitTenderData);
-      // const response = await axios.post('서버주소', tenderData);
-      // console.log('성공:', response.data);
-      alert(`${tenderData.id}님의 입찰 신청이 완료되었습니다`);
+      setTenders([...tenders, tenderDataWithNumber]);
+      setTenderData(tenderDataWithNumber);
+      console.log(JSON.stringify(tenderDataWithNumber));
+      console.log(tenderDataWithNumber);
+      const response = await axios.post(
+        `https://advise.kro.kr/dutch/ads/${auctionId}/proposals/`,
+        tenderDataWithNumber
+      );
+      console.log('성공:', response.data);
+      alert(`${tenderDataWithNumber.identifier}님의 입찰 신청이 완료되었습니다`);
     } catch (err) {
       console.error(err);
     }
@@ -153,11 +164,11 @@ export default function TenderInput({ tenders, setTenders }) {
         <FlexContainer>
           <div>
             <Label>ID:</Label>
-            <SmallInput type='text' name='id' value={tenderData.id} onChange={handleChange} />
+            <SmallInput type='text' name='identifier' value={tenderData.identifier} onChange={handleChange} />
           </div>
           <div>
             <Label>Password:</Label>
-            <SmallInput type='password' name='password' value={tenderData.password} onChange={handleChange} />
+            <SmallInput type='password' name='pwd' value={tenderData.pwd} onChange={handleChange} />
           </div>
         </FlexContainer>
         <TenderButton type='submit'>입찰하기</TenderButton>

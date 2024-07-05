@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import AuctionDescription from '../components/AuctionDescription';
 import TenderInput from '../components/TenderInput';
@@ -22,36 +22,35 @@ const AuctionDetailTitle = styled.h1`
 `;
 
 export default function AuctionDetail() {
-  const [tenders, setTenders] = useState([
-    { title: 'title1', id: 'id1', password: '123', price: '1000', url: 'http://google.com', info: 'info1' },
-    { title: 'title2', id: 'id2', password: '321', price: '2000', url: 'http://google.com', info: 'info2' },
-  ]);
+  const [tenders, setTenders] = useState([]);
   const [auctionData, setAuctionData] = useState({});
   const { auctionId } = useParams();
-  const { state } = useLocation();
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const [auctionData, tenders] = await axios.all([axios.get(''), axios.get('')]);
-    //     setAuctionData(auctionData.data);
-    //     setTenders(tenders.data);
-    saveHistory(auctionId, auctionData.title, auctionData.minimum_price);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchData();
+    const fetchData = async () => {
+      try {
+        const [auctionData, tenders] = await axios.all([
+          axios.get(`https://advise.kro.kr/dutch/ads/${auctionId}`),
+          axios.get(`https://advise.kro.kr/dutch/ads/${auctionId}/proposals/all/`),
+        ]);
+        setAuctionData(auctionData.data);
+        console.log(auctionData.data.image_url);
+        setTenders(tenders.data);
+        // console.log(tenders.data);
+        saveHistory(auctionId, auctionData.data.title, auctionData.data.minimum_price);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
   }, []);
 
   const saveHistory = (auctionId, auctionTitle, auctionMPrice) => {
     var arr = sessionStorage.getItem('history');
     arr = JSON.parse(arr);
-
     arr.push([auctionId, auctionTitle, auctionMPrice]);
     arr = new Set(arr);
     arr = [...arr];
-    console.log(arr);
     sessionStorage.setItem('history', JSON.stringify(arr));
   };
 
@@ -63,19 +62,21 @@ export default function AuctionDetail() {
       <WrapAuctionDetail>
         <AuctionDescription auctionData={auctionData} />
         <AuctionDetailTitle>입찰하기</AuctionDetailTitle>
-        <TenderInput tenders={tenders} setTenders={setTenders} />
+        <TenderInput tenders={tenders} setTenders={setTenders} auctionId={auctionId} />
         <AuctionDetailTitle>입찰 정보창</AuctionDetailTitle>
         {tenders &&
-          tenders.map((tender) => (
+          tenders.map((tender, idx) => (
             <TenderList
               title={tender.title}
-              id={tender.id}
-              password={tender.password}
+              identifier={tender.identifier}
+              pwd={tender.pwd}
               price={tender.price}
               url={tender.url}
               info={tender.info}
-              key={tender.id}
+              key={idx}
               deleteTender={deleteTender}
+              auctionId={auctionId}
+              id={tender.id}
             />
           ))}
         {/* PostAd id표시 <div>Auction Id: {auctionId}</div> */}

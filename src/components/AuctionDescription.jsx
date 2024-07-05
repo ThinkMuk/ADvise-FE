@@ -17,7 +17,7 @@ const WrapDisplayImage = styled.div`
   flex: 3;
 `;
 
-const DisplayImage = styled.div`
+const DisplayImage = styled.img`
   background-color: lightgray;
   margin: 10px;
   /* width: 100%; */
@@ -55,7 +55,7 @@ export default function AuctionDescription({ auctionData }) {
   return (
     <WrapAuctionDescription>
       <WrapDisplayImage>
-        <DisplayImage src={auctionData.imageURL} />
+        <DisplayImage src={auctionData.image_url} />
       </WrapDisplayImage>
       <Divider />
       <WrapDisplayDescription>
