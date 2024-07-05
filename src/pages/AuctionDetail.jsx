@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import AuctionDescription from '../components/AuctionDescription';
 import TenderInput from '../components/TenderInput';
 import TenderList from '../components/TenderList';
-// import axios from 'axios';
+import axios from 'axios';
 
 const WrapAuctionDetail = styled.div`
   display: flex;
@@ -26,24 +26,32 @@ export default function AuctionDetail() {
     { title: 'title1', id: 'id1', password: '123', price: '1000', url: 'http://google.com', info: 'info1' },
     { title: 'title2', id: 'id2', password: '321', price: '2000', url: 'http://google.com', info: 'info2' },
   ]);
+  const [auctionData, setAuctionData] = useState({});
   const { auctionId } = useParams();
   const { state } = useLocation();
 
   useEffect(() => {
-    //   axios
-    //     .get('')
-    //     .then((res) => setTenders(res.data))
-    //     .catch((e) => console.log(e));
-    saveHistory(auctionId);
+    // const fetchData = async () => {
+    //   try {
+    //     const [auctionData, tenders] = await axios.all([axios.get(''), axios.get('')]);
+    //     setAuctionData(auctionData.data);
+    //     setTenders(tenders.data);
+    saveHistory(auctionId, auctionData.title, auctionData.minimum_price);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // };
+    // fetchData();
   }, []);
 
-  const saveHistory = (tmpId) => {
+  const saveHistory = (auctionId, auctionTitle, auctionMPrice) => {
     var arr = sessionStorage.getItem('history');
     arr = JSON.parse(arr);
 
-    arr.push(tmpId);
+    arr.push([auctionId, auctionTitle, auctionMPrice]);
     arr = new Set(arr);
     arr = [...arr];
+    console.log(arr);
     sessionStorage.setItem('history', JSON.stringify(arr));
   };
 
@@ -53,7 +61,7 @@ export default function AuctionDetail() {
   return (
     <>
       <WrapAuctionDetail>
-        <AuctionDescription state={state} />
+        <AuctionDescription auctionData={auctionData} />
         <AuctionDetailTitle>입찰하기</AuctionDetailTitle>
         <TenderInput tenders={tenders} setTenders={setTenders} />
         <AuctionDetailTitle>입찰 정보창</AuctionDetailTitle>
