@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-// import axios from 'axios';
 
 const WrapTenderList = styled.div`
   height: auto;
@@ -108,7 +108,7 @@ const Info = styled.div`
   word-wrap: break-word;
 `;
 
-export default function TenderList({ title, id, password, price, url, info, deleteTender }) {
+export default function TenderList({ title, identifier, id, price, url, info, deleteTender, auctionId }) {
   const [inputPassword, setInputPassword] = useState('');
   const [expanded, setExpanded] = useState(false);
   const infoRef = useRef(null);
@@ -123,13 +123,15 @@ export default function TenderList({ title, id, password, price, url, info, dele
 
   //입찰 신청글 삭제함수
   const handleDelete = async () => {
-    if (inputPassword !== password) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
+    console.log(inputPassword);
     try {
-      // 서버에 DELETE 요청 보내기
-      // await axios.delete(`서버주소/${id}`);
+      await axios.request({
+        method: 'delete',
+        url: `https://advise.kro.kr/dutch/ads/${auctionId}/proposals/${id}/delete/`,
+        data: {
+          pwd: inputPassword,
+        },
+      });
       deleteTender(id);
       alert('입찰이 취소되었습니다');
     } catch (err) {
@@ -151,7 +153,7 @@ export default function TenderList({ title, id, password, price, url, info, dele
       <TenderDetail>
         <TenderDetailLeft>
           <TenderTitle>{truncateText(title, 50)}</TenderTitle>
-          <TenderId>{truncateText(id, 50)}</TenderId>
+          <TenderId>{truncateText(identifier, 50)}</TenderId>
           <TenderURL href={url} target='_blank'>
             {truncateText(url, 80)}
           </TenderURL>

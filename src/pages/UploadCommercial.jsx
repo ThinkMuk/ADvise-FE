@@ -127,21 +127,21 @@ export default function UploadCommercial() {
 
     const SendFormData = new FormData();
     SendFormData.append('title', title);
-    SendFormData.append('minimum_price', minimum_price);
     SendFormData.append('content', content);
+    SendFormData.append('minimum_price', minimum_price);
     SendFormData.append('image', image);
 
     console.log(SendFormData);
-    // try {
-    //   const response = await axios.post('', SendFormData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   });
-    //   console.log('성공:', response.data);
-    // } catch (err) {
-    //   console.error('에러:', err);
-    // }
+    try {
+      const response = await axios.post('https://advise.kro.kr/dutch/ads/', SendFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('성공:', response.data);
+    } catch (err) {
+      console.error('에러:', err);
+    }
   };
 
   return (
